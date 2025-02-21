@@ -16,3 +16,4 @@ class JobscraperItem(scrapy.Item):
     location = scrapy.Field()
     level_of_experience = scrapy.Field()
     open_positions = scrapy.Field()
+    job_deadline = scrapy.Field()
