@@ -12,3 +12,7 @@ class JobscraperItem(scrapy.Item):
     job_title = scrapy.Field()
     job_description = scrapy.Field()
     date_posted = scrapy.Field()
+    category = scrapy.Field()
+    location = scrapy.Field()
+    level_of_experience = scrapy.Field()
+    open_positions = scrapy.Field()
