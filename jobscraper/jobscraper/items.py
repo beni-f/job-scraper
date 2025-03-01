@@ -7,6 +7,7 @@ import scrapy
 
 
 class JobscraperItem(scrapy.Item):
+    source = scrapy.Field()
     job_url = scrapy.Field()
     recruiter = scrapy.Field()
     job_title = scrapy.Field()

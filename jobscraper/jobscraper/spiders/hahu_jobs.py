@@ -10,6 +10,7 @@ class HahuJobsSpider(scrapy.Spider):
         jobs = response.css('div[itemtype="https://schema.org/JobPosting"]')
         for job in jobs:
             item = JobscraperItem()
+            item['source'] = 'hahu_jobs'
             item['job_url'] = job.css('div > a[itemprop="url"]::attr(href)').get()
             item['job_title'] = job.css('div > h3[itemprop="title"]::text').get()
             item['recruiter'] = job.css('div > p.line-clamp-2::text').get()

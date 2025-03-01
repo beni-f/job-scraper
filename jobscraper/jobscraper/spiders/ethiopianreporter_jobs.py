@@ -12,6 +12,7 @@ class EthiopianreporterJobsSpider(scrapy.Spider):
 
         for job in jobs:
             item = JobscraperItem()
+            item['source'] = 'ethiopianreporter'
             item['job_url'] = job.css('a::attr(href)').get()
             item['job_title'] = job.css('h3.loop-item-title > a::text').get()
             item['recruiter'] = job.css('span.job-company > a > span::text').get()

@@ -15,6 +15,7 @@ class GeezJobsSpider(scrapy.Spider):
             detail_list = job.css('ul > li::text').getall()
             date = job.css('ul.down-ul > li').getall()
 
+            item['source'] = 'geez_jobs'
             item['job_url'] = ''
             item['job_title'] = job.css('div.job-link > a > h4::text').get()
             item['recruiter'] = job.css('ul > li > a::text').get()
