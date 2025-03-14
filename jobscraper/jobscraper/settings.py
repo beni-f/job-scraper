@@ -25,7 +25,8 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3
+RANDOMIZE_DOWNLOAD_DELAY = True
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -50,10 +51,9 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-import scrapy_fake_useragent
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 1,
+    'scrapy_selenium.SeleniumMiddleware': 800,
 }
 
 # Enable or disable extensions
@@ -64,9 +64,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "jobscraper.pipelines.JobscraperPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "jobscraper.pipelines.JobscraperPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -96,4 +96,15 @@ FEED_EXPORT_ENCODING = "utf-8"
 ROBOTSTXT_OBEY = False
 
 # settings.py
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+
+HTTP_PROXY = "http://127.0.0.1:8118"
+
+COOKIES_ENABLED = False
+
+PROXY_MODE = 1
+
+SELENIUM_DRIVER_ARGUMENTS = ["--headless=new"] 
+SELENIUM_DRIVER_EXECUTABLE_PATH = '/usr/bin/chromedriver'
+SELENIUM_BROWSER_EXECUTABLE_PATH = '/usr/bin/google-chrome'
+SELENIUM_DRIVER_PATH = 'chrome'

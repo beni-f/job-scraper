@@ -13,19 +13,18 @@ class GeezJobsSpider(scrapy.Spider):
             item = JobscraperItem()
 
             detail_list = job.css('ul > li::text').getall()
-            date = job.css('ul.down-ul > li').getall()
 
             item['source'] = 'geez_jobs'
-            item['job_url'] = ''
-            item['job_title'] = job.css('div.job-link > a > h4::text').get()
+            item['job_url'] = job.css('a::attr(href)').get()
+            item['job_title'] = job.css('a > h4::text').get()
             item['recruiter'] = job.css('ul > li > a::text').get()
            
             item['job_description'] = job.css('p::text').get()
             item['location'] = detail_list[2]
             item['level_of_experience'] = detail_list[1]
             item['category'] = job.css('ul.tags-v1 > li > a::text').getall()
-            item['date_posted'] = date[0]
-            item['job_deadline'] = date[1]
+            item['date_posted'] = job.css('ul.down-ul > li::text').get()
+            item['job_deadline'] = job.css('ul.down-ul > li > span::text').get()
 
             yield item
 
