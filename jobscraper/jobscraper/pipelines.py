@@ -15,8 +15,8 @@ class JobscraperPipeline:
         adapter = ItemAdapter(item)
         source = adapter.get('source')
 
-        if source == 'ethiopianreporter_jobs':
-            self.clean_ethiopianreporter_item(adapter)
+        if source == 'ethio_jobs':
+            self.clean_ethio_jobs_item(adapter)
         elif source == 'hahu_jobs':
             self.clean_hahu_jobs_item(adapter)
         elif source == 'geez_jobs':
@@ -24,11 +24,10 @@ class JobscraperPipeline:
 
         return item
     
-    def clean_ethiopianreporter_item(self, adapter):
-        adapter['level_of_experience'] = adapter['level_of_experience'] + ' years'
-        adapter['job_deadline'] = datetime.strptime(adapter['job_deadline'], '%B %d, %Y').strftime('%Y-%m-%d')
-        adapter['date_posted'] = datetime.strptime(adapter['date_posted'], '%B %d, %Y').strftime('%Y-%m-%d')
-        adapter['category'] = [ cat.strip() for cat in adapter['category']]
+    def clean_ethio_jobs_item(self, adapter):
+        adapter['date_posted'] = datetime.strptime(adapter['date_posted'], "%Y-%m-%dT%H:%M:%S.%fZ").date()
+        adapter['job_deadline'] = datetime.strptime(adapter['job_deadline'], "%Y-%m-%dT%H:%M:%S.%fZ").date()
+
 
 
     def clean_hahu_jobs_item(self, adapter):
