@@ -25,7 +25,7 @@ class EthioJobsSpider(scrapy.Spider):
                     item['source'] = 'ethio_jobs'
                     item['job_url'] = job.get('slug')
                     item['job_title'] = job.get('title') 
-                    item['job_description'] = job.get('job_desription')
+                    item['job_description'] = job.get('description')
                     item['recruiter'] = job.get('company', {}).get('name')
                     item['location'] = job.get('state', 'N/A')
                     item['date_posted'] = job.get('date_published')
