@@ -18,7 +18,6 @@ class HahuJobsSpider(scrapy.Spider):
             item['category'] = job.css('div > p[itemprop="occupationalCategory"]::text').get()
             item['location'] = job.css('div > p > span[itemprop="addressRegion"]::text').get()
             item['level_of_experience'] = job.css('div > p[itemprop="experienceRequirements"]::text').get()
-            item['open_positions'] =  job.css('div > p[itemprop="totalJobOpenings"]::text').get()
             item['date_posted'] = job.css('div > span > span[itemprop="datePosted"]::text').get()
             item['job_deadline'] = job.css('div > span > span[itemprop="validThrough"]::text').get()
             yield item
