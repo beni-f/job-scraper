@@ -6,6 +6,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+from decouple import config
 
 BOT_NAME = "jobscraper"
 
@@ -19,7 +20,7 @@ NEWSPIDER_MODULE = "jobscraper.spiders"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-SCRAPEOPS_API_KEY = '05e5789e-436f-44fd-a2ac-a0da88ef4c2b'
+SCRAPEOPS_API_KEY = config('SCRAPEOPS_API_KEY')
 SCRAPEOPS_PROXY_ENABLED = True
 
 DOWNLOAD_DELAY = 3
